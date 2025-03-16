@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Storage System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1><center>Cloud Storage System</center></h1>
+
+        <!-- Section 1: Upload New File -->
+        <div class="section">
+            <h2>Upload New File</h2>
+            <form action="{{ url_for('upload') }}" method="POST" class="upload-form">
+                <input type="text" name="filename" placeholder="Enter filename" required>
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+
+        <!-- Section 2: Update Existing File -->
+        <div class="section">
+            <h2>Update Existing File</h2>
+            <form action="{{ url_for('update_file') }}" method="POST" class="update-form">
+                <input type="text" name="old_filename" placeholder="Enter current filename" required>
+                <input type="text" name="new_filename" placeholder="Enter new filename" required>
+                <button type="submit">Update</button>
+            </form>
+        </div>
+
+        <!-- Section 3: Delete File -->
+        <div class="section">
+            <h2>Delete File</h2>
+            <form action="{{ url_for('delete_file') }}" method="POST" class="delete-form">
+                <input type="text" name="filename" placeholder="Enter filename to delete" required>
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+
+        <!-- Section 4: Display Stored Files -->
+        <div class="section">
+            <h2>Stored Files</h2>
+            <ul class="file-list">
+                {% for file in files %}
+                <li class="file-item">
+                    {{ file }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
